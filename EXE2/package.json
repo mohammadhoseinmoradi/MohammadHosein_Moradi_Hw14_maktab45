@@ -18,6 +18,8 @@
   "homepage": "https://github.com/mohammadhoseinmoradi/MohammadHosein_Moradi_Hw14_maktab45#readme",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.15.0"
   }
 }
