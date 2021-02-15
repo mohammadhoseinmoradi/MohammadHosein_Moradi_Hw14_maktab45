@@ -16,6 +16,7 @@
     text-decoration: none;
     text-shadow: 1px 1px 0 #888;
     z-index: 3;
+    text-decoration: none;
 }
 
 .nav .slide1,
@@ -100,13 +101,13 @@ html,
 }
 
 .search-wrapper .input-holder .search-input {
-    width: 100%;
+    width: 73%;
     height: 50px;
     padding: 0px 70px 0 20px;
     opacity: 0;
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 60px;
     background: transparent;
     box-sizing: border-box;
     border: none;
@@ -119,6 +120,7 @@ html,
     transform: translate(0, 60px);
     transition: all .3s cubic-bezier(0.000, 0.105, 0.035, 1.570);
     transition-delay: 0.3s;
+    border-radius: 50px;
 }
 
 .search-wrapper.active .input-holder .search-input {
@@ -170,9 +172,9 @@ html,
 
 .search-wrapper .input-holder .search-icon span::before {
     width: 4px;
-    height: 11px;
-    left: 9px;
-    top: 18px;
+    height: 12px;
+    left: 5px;
+    top: 16px;
     border-radius: 2px;
     background: #FE5F55;
 }

@@ -29,7 +29,27 @@ public.get("/Js/home.js", (req, res) => {
     res.sendFile(path.join(__dirname, '../public/Js/home.Js'))
 })
 public.get("/Js/product.js", (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Js/product.Js'))
+        res.sendFile(path.join(__dirname, '../public/Js/product.Js'))
+    })
+    // ----------------------------------------------------------------------------------------
+public.get('/contact', (req, res) => {
+    res.render("pages/contact")
+})
+public.get("/Js/contact.js", (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/Js/contact.Js'))
+})
+public.get("/Css/contact.css", (req, res) => {
+        res.sendFile(path.join(__dirname, '../public/Css/contact.css'))
+    })
+    // ------------------------------------------------
+public.get('/about', (req, res) => {
+    res.render("pages/about")
+})
+public.get("/Js/about.js", (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/Js/about.Js'))
+})
+public.get("/Css/about.css", (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/Css/about.Css'))
 })
 
 

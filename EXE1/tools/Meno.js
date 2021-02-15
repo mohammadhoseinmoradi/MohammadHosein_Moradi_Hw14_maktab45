@@ -7,7 +7,8 @@ function Meno(req, res, next) {
     let AllData = JSON.parse(fs.readFileSync("./tools/file.json", "utf8"));
     for (let i = 0; i < AllData.length; i++) {
         if (id == AllData[i].id) {
-            var kala = AllData[i];
+            var kala = [];
+            kala.push(AllData[i]);
             console.log(kala)
 
         }

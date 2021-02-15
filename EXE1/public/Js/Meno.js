@@ -29,15 +29,20 @@ function searchToggle(obj, evt) {
         evt.preventDefault();
     } else if (container.hasClass('active') && $(obj).closest('.input-holder').length == 0) {
         container.removeClass('active');
-        // clear input
-        // container.find('.search-input').val('');
-        let data = $("#inputData").val();
-        console.log(data);
-        $.post({
-            data: data,
-            url: "/search",
-            success: function() { alert(data) }
-        })
+        // clear input;
+        container.find('.search-input').val('');
+
     }
 }
 // ------------------------------------------------------------------------
+function senddata() {
+    let data = $("#inputData").val();
+    // console.log(data);
+    // let kala = {
+    //     data: data,
+    // };
+    // $.post("/search", kala, function(data, status) {
+    //     alert("Data: " + data + "\nStatus: " + status);
+    // });
+    $("#linksearch").attr("href", `/search/${data}`)
+}

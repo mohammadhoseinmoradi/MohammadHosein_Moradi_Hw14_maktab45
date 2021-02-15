@@ -12,18 +12,18 @@
 <body>
     <div id="meno">
         <ul class="nav">
-            <li><a href="#/">Alpha</a></li>
-            <li><a href="#/">Beta</a></li>
-            <li><a href="#/">Gamma</a></li>
-            <li><a href="#/">Delta</a></li>
-            <li><a href="#/">Epsilon</a></li>
+            <li><a href="/" style="text-decoration: none;">home</a></li>
+            <li><a href="/public/contact" style="text-decoration: none;">contac us</a></li>
+            <li><a href="/public/about" style="text-decoration: none;">about us</a></li>
             <li class="slide1"></li>
             <li class="slide2"></li>
         </ul>
         <div class="search-wrapper">
             <div class="input-holder">
                 <input id="inputData" type="text" class="search-input" placeholder="Type to search" />
-                <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+
+                <button class="search-icon" onclick="searchToggle(this, event);"><span><button onclick="senddata()" type="submit" style="width:60px;height: 60px;border-radius: 50%;margin-top:5px;color:rgb(250, 99, 99);font-size: 30;font-weight: bold;"><a id="linksearch">go</a></button></span>
+                </button>
             </div>
             <span class="close" onclick="searchToggle(this, event);"></span>
         </div>
