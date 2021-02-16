@@ -8,9 +8,15 @@ function profile(UserInfo) {
     let allinfo = []
     for (let i = 0; i < AllUsers.length; i++) {
         if (AllUsers[i].username == UserInfo.username) {
+            AllUsers[i].isLoggedIn = true;
             allinfo.push(AllUsers[i])
         }
     }
+    let data = JSON.stringify(AllUsers)
+    fs.writeFile("./tools/UserData.json", data, function(err) {
+        if (err) return "400"
+        console.log("seved", AllUsers);
+    })
     console.log(allinfo, "222222222222222222222222222222")
     return allinfo;
 

@@ -14,8 +14,14 @@ profile.use("/public", express.static('public'))
 profile.get('/:id', (req, res) => {
     let data = JSON.parse(req.params.id)
     let UserInfo = checkprofile(data)
-    console.log(UserInfo, "999999999999999999999999999999999999999999999999999999999999");
-    res.render('pages/profile', { UserInfo })
+    if (UserInfo[0].isLoggedIn == true) {
+        console.log(UserInfo, "999999999999999999999999999999999999999999999999999999999999");
+        res.render('pages/profile', { UserInfo })
+    } else if (UserInfo[0].isLoggedIn == false) {
+        res.render("pages/login")
+    }
+
+
 })
 
 module.exports = profile;
