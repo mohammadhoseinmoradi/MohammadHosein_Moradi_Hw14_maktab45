@@ -13,7 +13,7 @@ const { send } = require('process');
 // SinginUser.get('/', (req, res) => {
 //     res.render('pages/SinginUser')
 // })
-SinginUser.post('/', (req, res) => {
+SinginUser.post('/', (req, res, next) => {
     console.log("data")
     req.on('data', function(data) {
         console.log(JSON.parse(data));
@@ -26,13 +26,18 @@ SinginUser.post('/', (req, res) => {
     function send(check) {
         if (check == 200) {
             res.status("200")
-            res.end();
+            next(),
+                res.end();
         } else if (check == 400) {
             res.status("400")
             res.end();
         }
     }
 
+})
+SinginUser.post('/', (req, res) => {
+    console.log("1111111111");
+    res.render('pages/profile')
 })
 
 module.exports = SinginUser;
