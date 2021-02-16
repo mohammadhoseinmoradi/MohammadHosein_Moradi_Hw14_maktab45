@@ -127,13 +127,14 @@ function btnSingIn() {
         console.log(this.status);
         if (this.readyState == 4 && this.status == 200) {
             Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                // window.location.replace(`/profile/${Datauser}`);
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            let data = JSON.stringify(Datauser)
+            window.location.replace(`/profile/${data}`);
         } else if (this.readyState == 4 && this.status == 400) {
             Swal.fire({
                 icon: 'error',

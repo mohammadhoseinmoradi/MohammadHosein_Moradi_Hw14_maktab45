@@ -25,7 +25,8 @@ SingUpUser.post('/', (req, res) => {
 
         function send(check) {
             if (check == 200) {
-                res.render("pages/profile")
+                res.status("200")
+                res.end();
             } else if (check == 400) {
                 res.status("400")
                 res.end();

@@ -26,8 +26,7 @@ SinginUser.post('/', (req, res, next) => {
     function send(check) {
         if (check == 200) {
             res.status("200")
-            next(),
-                res.end();
+            res.end();
         } else if (check == 400) {
             res.status("400")
             res.end();
@@ -35,9 +34,6 @@ SinginUser.post('/', (req, res, next) => {
     }
 
 })
-SinginUser.post('/', (req, res) => {
-    console.log("1111111111");
-    res.render('pages/profile')
-})
+
 
 module.exports = SinginUser;
