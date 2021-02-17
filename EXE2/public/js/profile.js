@@ -32,6 +32,7 @@ if (genderbefor[2] == "male") {
     $("#rb2").prop("checked", true);
 }
 
+
 function SubmitEdit() {
     let username = $("#username").val();
     let email = $("#email").val();
@@ -45,63 +46,78 @@ function SubmitEdit() {
     } else if (female) {
         gender = "female"
     }
-    let regex = /\w+/gm;
-    let usernamebefor = first_user_name.match(regex)
-    console.log(username, email, password, male, female, gender, usernamebefor);
-    if (usernamebefor[0] == username) {
 
-    }
-    let UserInfo = {
-        username: username,
-        email: email,
-        password: password,
-        gender: gender,
-        isLoggedIn: false,
-        usernamebefor: usernamebefor,
-    }
-    let Datauser = {
-        username: username,
-        password: password
-    }
-    let requestHttp = new XMLHttpRequest();
-    requestHttp.onreadystatechange = function() {
-        console.log(this.status);
-        if (this.readyState == 4 && this.status == 200) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'success',
-                text: 'the Sing in is successfully',
-                footer: '<a href="/"><button>GO TO MY PROFILE</button></a>',
+    if (username == "" || email == "" || password == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: ' please pull inputs ',
+            footer: '<a href>Why do I have this issue?</a>'
 
-            })
+        })
+        $("#username").css("border", "2px solid red");
+        $("#email").css("border", "2px solid red");
+        $("#password").css("border", "2px solid red");
+    } else {
 
-            let data = JSON.stringify(Datauser)
-            window.location.replace(`/profile/${data}`);
-        } else if (this.readyState == 4 && this.status == 400) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'The User Name Not valid',
-                footer: '<a href>Why do I have this issue?</a>'
-            })
+        let regex = /\w+/gm;
+        let usernamebefor = first_user_name.match(regex)
+        console.log(username, email, password, male, female, gender, usernamebefor);
+        let UserInfo = {
+            username: username,
+            email: email,
+            password: password,
+            gender: gender,
+            usernamebefor: usernamebefor,
         }
-    };
-    requestHttp.open("POST", "/Editprofile");
-    requestHttp.setRequestHeader("Content-type", "application/json");
-    requestHttp.send(JSON.stringify(UserInfo));
+        let Datauser = {
+            username: username,
+            password: password
+        }
+        let requestHttp = new XMLHttpRequest();
+        requestHttp.onreadystatechange = function() {
+            console.log(this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'success',
+                    text: 'the Sing in is successfully',
+                    footer: '<a href="/"><button>GO TO MY PROFILE</button></a>',
+
+                })
+
+                let data = JSON.stringify(Datauser)
+                window.location.replace(`/profile/${data}`);
+            } else if (this.readyState == 4 && this.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'The User Name Not valid',
+                    footer: '<a href>Why do I have this issue?</a>'
+                })
+            }
+        };
+        requestHttp.open("POST", "/Editprofile");
+        requestHttp.setRequestHeader("Content-type", "application/json");
+        requestHttp.send(JSON.stringify(UserInfo));
 
 
-    // $("#username").on("click", function() {
-    //     $("#username").css("border", "none");
-    // })
-    // $("#email").on("click", function() {
-    //     $("#email").css("border", "none");
-    // })
-    // $("#password").on("click", function() {
-    //         $("#password").css("border", "none");
-    //     })
-    // $("#linkSinging").attr("href", `/SinginUser/${data}`)
+    }
+
+
+
+
+    $("#username").on("click", function() {
+        $("#username").css("border", "none");
+    })
+    $("#email").on("click", function() {
+        $("#email").css("border", "none");
+    })
+    $("#password").on("click", function() {
+            $("#password").css("border", "none");
+        })
+        // $("#linkSinging").attr("href", `/SinginUser/${data}`)
 }
 
 function logout() {

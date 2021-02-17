@@ -14,10 +14,9 @@ logout.use("/public", express.static('public'))
 logout.post('/', (req, res) => {
 
     req.on('data', function(data) {
-        console.log(JSON.parse(data));
+
         let UserInfo = JSON.parse(data)
         let check = checklogout(UserInfo)
-        console.log(check);
         send(check)
     })
 

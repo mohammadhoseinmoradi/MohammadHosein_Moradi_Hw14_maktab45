@@ -8,12 +8,10 @@ const checkUser = require('../tools/Editprofile')
 const fs = require('fs');
 const { send } = require('process');
 Editprofile.post('/', (req, res, next) => {
-    console.log("data")
+
     req.on('data', function(data) {
-        console.log(JSON.parse(data));
         let UserInfo = JSON.parse(data)
         let check = checkUser(UserInfo)
-        console.log(check);
         send(check)
     })
 

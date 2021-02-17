@@ -16,6 +16,7 @@ function SingUp() {
     let username = $("#username").val();
     let email = $("#email").val();
     let password = $("#password").val();
+    let verify = $("#verifypassword").val();
     let male = $("#rb1").prop("checked");
     let female = $("#rb2").prop("checked");
     let gender = "gender";
@@ -24,7 +25,7 @@ function SingUp() {
     } else if (female) {
         gender = "female"
     }
-    if (username == "" && email == "" && password == "") {
+    if (username == "" && email == "" && password == "" && verify == "") {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -35,6 +36,7 @@ function SingUp() {
         $("#username").css("border", "2px solid red");
         $("#email").css("border", "2px solid red");
         $("#password").css("border", "2px solid red");
+        $("#verifypassword").css("border", "2px solid red");
 
     } else if (username == "") {
         Swal.fire({
@@ -61,6 +63,24 @@ function SingUp() {
             footer: '<a href>Why do I have this issue?</a>'
         })
         $("#password").css("border", "2px solid red");
+    } else if (verify == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'The check verify password',
+            footer: '<a href>Why do I have this issue?</a>'
+        })
+        $("#verifypassword").css("border", "2px solid red");
+    } else if (password != verify) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'The please  check verify',
+            footer: '<a href>Why do I have this issue?</a>'
+        })
+        $("#verifypassword").css("border", "2px solid red");
+
+
     } else if (gender == "gender") {
         Swal.fire({
             icon: 'error',
@@ -69,12 +89,27 @@ function SingUp() {
             footer: '<a href>Why do I have this issue?</a>'
         })
     } else {
+        $("#username").on("click", function() {
+            $("#username").css("border", "none");
+        })
+        $("#email").on("click", function() {
+            $("#email").css("border", "none");
+        })
+        $("#password").on("click", function() {
+            $("#password").css("border", "none");
+        })
+        $("#verifypassword").on("click", function() {
+            $("#verifypassword").css("border", "none");
+        })
+
+
+
+
         let UserInfo = {
             username: username,
             email: email,
             password: password,
             gender: gender,
-            isLoggedIn: false,
         }
         let requestHttp = new XMLHttpRequest();
         requestHttp.onreadystatechange = function() {
@@ -109,7 +144,10 @@ function SingUp() {
         $("#email").css("border", "none");
     })
     $("#password").on("click", function() {
-            $("#password").css("border", "none");
+        $("#password").css("border", "none");
+    })
+    $("#verifypassword").on("click", function() {
+            $("#verifypassword").css("border", "none");
         })
         // $("#linkSinging").attr("href", `/SinginUser/${data}`)
 }

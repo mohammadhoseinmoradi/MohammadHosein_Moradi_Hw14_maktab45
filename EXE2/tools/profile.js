@@ -1,23 +1,27 @@
 const fs = require('fs');
 
 function profile(UserInfo) {
-    // let UserInfo = JSON.parse(a)
-    console.log(UserInfo, "8888888888888888888888888888888");
+
     let AllUsers = (JSON.parse(fs.readFileSync("./tools/UserData.json", "utf8")));
-    console.log(UserInfo, AllUsers, "---------------------------");
+
     let allinfo = []
     for (let i = 0; i < AllUsers.length; i++) {
         if (AllUsers[i].username == UserInfo.username) {
-            AllUsers[i].isLoggedIn = true;
+            if (AllUsers[i].isLoggedIn == false) {
+                AllUsers[i].isLoggedIn = true;
+            } else if (AllUsers[i].isLoggedIn == true) {
+                AllUsers[i].isLoggedIn = false;
+            }
+
             allinfo.push(AllUsers[i])
         }
     }
     let data = JSON.stringify(AllUsers)
     fs.writeFile("./tools/UserData.json", data, function(err) {
         if (err) return "400"
-        console.log("seved", AllUsers);
+        console.log("seved");
     })
-    console.log(allinfo, "222222222222222222222222222222")
+
     return allinfo;
 
 }

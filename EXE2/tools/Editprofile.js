@@ -1,16 +1,20 @@
 const fs = require('fs');
 
 function Editprofile(UserInfo) {
-    // let UserInfo = JSON.parse(a)
-    console.log(UserInfo);
+
     let AllUsers = (JSON.parse(fs.readFileSync("./tools/UserData.json", "utf8")));
-    console.log(UserInfo, AllUsers, "***************************************");
     let flag = true;
     if (UserInfo.username == UserInfo.usernamebefor[0]) {
         for (let i = 0; i < AllUsers.length; i++) {
             if (UserInfo.username == AllUsers[i].username) {
                 AllUsers[i].email = UserInfo.email;
-                AllUsers[i].password = UserInfo.password;
+                if (AllUsers[i].password == UserInfo.password) {
+                    AllUsers[i].password = UserInfo.password;
+                    AllUsers[i].isLoggedIn = false;
+                } else if (AllUsers[i].password != UserInfo.password) {
+                    AllUsers[i].password = UserInfo.password;
+
+                }
                 AllUsers[i].gender = UserInfo.gender;
                 flag = false;
             }
@@ -30,7 +34,13 @@ function Editprofile(UserInfo) {
                 if (UserInfo.usernamebefor == AllUsers[i].username) {
                     AllUsers[i].username = UserInfo.username;
                     AllUsers[i].email = UserInfo.email;
-                    AllUsers[i].password = UserInfo.password;
+                    if (AllUsers[i].password == UserInfo.password) {
+                        AllUsers[i].password = UserInfo.password;
+                        AllUsers[i].isLoggedIn = false;
+                    } else if (AllUsers[i].password != UserInfo.password) {
+                        AllUsers[i].password = UserInfo.password;
+
+                    }
                     AllUsers[i].gender = UserInfo.gender;
                     flag = false;
                 }
@@ -38,7 +48,6 @@ function Editprofile(UserInfo) {
             }
             // return "200"
         }
-        console.log(exited, "-------------------------------------------------");
     }
     if (flag) {
         return "400"

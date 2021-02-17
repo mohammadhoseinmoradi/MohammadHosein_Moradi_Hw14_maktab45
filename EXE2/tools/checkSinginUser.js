@@ -1,10 +1,9 @@
 const fs = require('fs');
 
 function checkSinginUser(UserInfo) {
-    // let UserInfo = JSON.parse(a)
-    console.log(UserInfo);
+
     let AllUsers = (JSON.parse(fs.readFileSync("./tools/UserData.json", "utf8")));
-    console.log(UserInfo, AllUsers, "---------------------------");
+
     let flag = true;
     for (let i = 0; i < AllUsers.length; i++) {
         if (AllUsers[i].username == UserInfo.username) {
@@ -14,6 +13,7 @@ function checkSinginUser(UserInfo) {
     if (!flag) {
         return "400"
     } else {
+        Object.assign(UserInfo, { isLoggedIn: false });
         AllUsers.push(UserInfo)
         console.log(AllUsers);
         let data = JSON.stringify(AllUsers)

@@ -14,12 +14,12 @@ SingUpUser.use("/public", express.static('public'))
 //     res.render('pages/SingUpUser')
 // })
 SingUpUser.post('/', (req, res) => {
-        console.log("data")
+
         req.on('data', function(data) {
-            console.log(JSON.parse(data));
+
             let UserInfo = JSON.parse(data)
             let check = checkUser(UserInfo)
-            console.log(check);
+
             send(check)
         })
 
