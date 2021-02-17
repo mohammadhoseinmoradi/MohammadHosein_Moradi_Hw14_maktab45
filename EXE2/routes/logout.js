@@ -11,16 +11,24 @@ logout.use("/public", express.static('public'))
     // ---------------------------------------------------------
 
 // console.log(data)
-logout.get('/:id', (req, res) => {
-    console.log(req.params.id);
-    let data = req.params.id
-    let UserInfo = checklogout(data)
-    console.log(UserInfo, "999999999999999999999999999999999999999999999999999999999999");
-    if (UserInfo[0].isLoggedIn == false) {
-        res.redirect()
-        res.render("pages/login")
-    } else if (UserInfo[0].isLoggedIn == true) {
-        res.render('pages/profile', { UserInfo })
+logout.post('/', (req, res) => {
+
+    req.on('data', function(data) {
+        console.log(JSON.parse(data));
+        let UserInfo = JSON.parse(data)
+        let check = checklogout(UserInfo)
+        console.log(check);
+        send(check)
+    })
+
+    function send(check) {
+        if (check[0].isLoggedIn == false) {
+            res.status("200")
+            res.end();
+        } else if (check[0].isLoggedIn == true) {
+            res.status("400")
+            res.end();
+        }
 
     }
 

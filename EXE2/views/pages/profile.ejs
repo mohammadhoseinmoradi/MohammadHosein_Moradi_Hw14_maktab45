@@ -27,7 +27,7 @@
                                         <%= UserInfo[0].username %>
                                     </h6>
                                     <p>Web Designer</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                                    <button id="myBtn">Edit Informations</button>
+                                    <button style="border-radius: 50px;" id="myBtn">Edit Informations</button>
                                 </div>
                             </div>
                             <div class="col-sm-8">
@@ -64,7 +64,7 @@
                                         <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>
-                                <button><a href="/logout/<%=UserInfo[0].username%>">logout</a></button>
+                                <button style="border-radius: 50px;margin-left: 350px;margin-bottom: 30px;" onclick="logout()" class="logout" id=<%=UserInfo[0].username%>>logout</button>
                                 <!-- Trigger/Open The Modal -->
                                 <!-- <button id="myBtn">Open Modal</button> -->
 
@@ -94,7 +94,7 @@
                                             <input type="radio" name="rb" id="rb2" />
 
                                         </div>
-                                        <button id="Submitbtn" onclick="SubmitEdit()">submit</button>
+                                        <button style="border-radius:20px;" id="Submitbtn" onclick="SubmitEdit()">submit</button>
                                     </div>
 
                                 </div>

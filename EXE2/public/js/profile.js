@@ -103,3 +103,40 @@ function SubmitEdit() {
     //     })
     // $("#linkSinging").attr("href", `/SinginUser/${data}`)
 }
+
+function logout() {
+    let username = $(".logout").attr("id");
+    console.log(username);
+    let Datauser = {
+        username: username,
+    }
+    let requestHttp = new XMLHttpRequest();
+    requestHttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'success',
+                text: 'the Sing in is successfully',
+                footer: '<a href="/"><button>GO TO MY PROFILE</button></a>',
+
+            })
+
+            // let data = JSON.stringify(Datauser)
+            window.location.replace(`/`);
+        } else if (this.readyState == 4 && this.status == 400) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'The User Name Not valid',
+                footer: '<a href>Why do I have this issue?</a>'
+            })
+            window.location.replace(`/profile/${Datauser}`);
+        }
+    };
+    requestHttp.open("POST", "/logout");
+    requestHttp.setRequestHeader("Content-type", "application/json");
+    requestHttp.send(JSON.stringify(Datauser));
+
+}
