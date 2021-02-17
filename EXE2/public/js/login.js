@@ -118,38 +118,75 @@ function btnSingIn() {
     let username = $("#UserNameSingIn").val()
     let password = $("#passwordSingin").val()
 
-    let Datauser = {
-        username: username,
-        password: password
-    }
-    let requestHttp = new XMLHttpRequest();
-    requestHttp.onreadystatechange = function() {
-        console.log(this.status);
-        if (this.readyState == 4 && this.status == 200) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500
-            })
-            let data = JSON.stringify(Datauser)
-            window.location.replace(`/profile/${data}`);
-        } else if (this.readyState == 4 && this.status == 400) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'The User Name Not Valid',
-                footer: '<a href>Why do I have this issue?</a>'
-            })
+    // ------------------------------------------------------
+    if (username == "" && password == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: ' please pull inputs ',
+            footer: '<a href>Why do I have this issue?</a>'
+
+        })
+        $("#UserNameSingIn").css("border", "2px solid red");
+        $("#passwordSingin").css("border", "2px solid red");
+
+    } else if (username == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'please check user name',
+            footer: '<a href>Why do I have this issue?</a>'
+        })
+        $("#UserNameSingIn").css("border", "2px solid red");
+    } else if (password == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'The check password',
+            footer: '<a href>Why do I have this issue?</a>'
+        })
+        $("#passwordSingin").css("border", "2px solid red");
+    } else {
+        let Datauser = {
+            username: username,
+            password: password
         }
-    };
-    requestHttp.open("POST", "/SingUpUser");
-    requestHttp.setRequestHeader("Content-type", "application/json");
-    requestHttp.send(JSON.stringify(Datauser));
+        let requestHttp = new XMLHttpRequest();
+        requestHttp.onreadystatechange = function() {
+            console.log(this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                let data = JSON.stringify(Datauser)
+                window.location.replace(`/profile/${data}`);
+            } else if (this.readyState == 4 && this.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'The User Name Not Valid',
+                    footer: '<a href>Why do I have this issue?</a>'
+                })
+            }
+        };
+        requestHttp.open("POST", "/SingUpUser");
+        requestHttp.setRequestHeader("Content-type", "application/json");
+        requestHttp.send(JSON.stringify(Datauser));
+    }
+
+
+    $("#UserNameSingIn").on("click", function() {
+        $("#UserNameSingIn").css("border", "none");
+    })
+
+    $("#passwordSingin").on("click", function() {
+        $("#passwordSingin").css("border", "none");
+    })
+
+
     // $("#linkSingIn").attr("href", `/SingUpUser/${data}`)
-}
-
-function btnprof(Datauser) {
-
 }
