@@ -4,11 +4,7 @@ function Search(AllData, data) {
     let Alldata = JSON.stringify(AllData);
     let re = /\w+/g;
     let result = Alldata.match(re)
-        // console.log(result);
-        // console.log(typeof(data));
     let newData = data.toString().toUpperCase();
-
-    console.log(newData);
     var ids = [];
     for (let i = 0; i < result.length; i++) {
         if (newData == result[i]) {
@@ -19,7 +15,6 @@ function Search(AllData, data) {
 
         }
     }
-    console.log(ids);
     for (let i = 0; i < ids.length; i++) {
         let number = ids[i] / 64;
         ids[i] = Math.round(number)
@@ -34,6 +29,7 @@ function Search(AllData, data) {
             }
         }
     }
+    console.log(ids.length);
     return kala;
 
 

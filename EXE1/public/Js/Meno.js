@@ -37,12 +37,10 @@ function searchToggle(obj, evt) {
 // ------------------------------------------------------------------------
 function senddata() {
     let data = $("#inputData").val();
-    // console.log(data);
-    // let kala = {
-    //     data: data,
-    // };
-    // $.post("/search", kala, function(data, status) {
-    //     alert("Data: " + data + "\nStatus: " + status);
-    // });
-    $("#linksearch").attr("href", `/search/${data}`)
+    if (data == "") {
+        $("#linksearch").attr("href", `/`)
+    } else {
+        $("#linksearch").attr("href", `/search/${data}`)
+    }
+
 }
